@@ -1,39 +1,70 @@
 import qrcode
-import time
-from os import system
-
-def startup(t):
-    print("                                  .___                                                  __")
-    time.sleep(t) 
-    print("  _____________    ____  ____   __| _/____      ____   ____   ____   ________________ _/  |_  ___________")
-    time.sleep(t)  
-    print(" / ____/\_  __ \ _/ ___\/  _ \ / __ |/ __ \    / ___\_/ __ \ /    \_/ __ \_  __ \__  \\   __\/  _ \_  __ \ ")
-    time.sleep(t) 
-    print("< <_|  | |  | \/ \  \__(  <_> ) /_/ \  ___/   / /_/  >  ___/|   |  \  ___/|  | \// __ \|  | (  <_> )  | \/ ")
-    time.sleep(t) 
-    print(" \__   | |__|     \___  >____/\____ |\___  >  \___  / \___  >___|  /\___  >__|  (____  /__|  \____/|__|")
-    time.sleep(t) 
-    print("    |__|              \/           \/    \/  /_____/      \/     \/     \/           \/")
-    time.sleep(t) 
-    print("")
-    time.sleep(t)
-    print("by Sifro ")
-    print("\n \n \n")
-
-startup(0.1)
-
-Running = True
-
-while Running:
-    filename = input("Filename: ")
-    content = input("Content: ")
-    img = qrcode.make(content)
-    img.save(f"{filename}.jpg")
-    print(f"File saved as {filename}.jpg in current directory")
-    exit = input("Generate another file? (y/n): ")
-    if exit == "n":
-        Running = False
+import tkinter
+import customtkinter 
 
 
+def create_qr():
+    img = qrcode.make(content_box.get("1.0","" ))
+    img.save(f"Codes/{filename_box.get()}{filetype_box.get()}")
 
+#customtkinter setup
+customtkinter.set_appearance_mode("Dark")
+customtkinter.set_default_color_theme("dark-blue")
+root = customtkinter.CTk()
+root.geometry("500x500")
+
+#Generate Button
+generate_button = customtkinter.CTkButton(master=root,
+                                width=120,
+                                height=32,
+                                corner_radius=8,
+                                text="Generate",
+                                command=create_qr,)
+generate_button.place(relx=0.5, rely=0.8, anchor=tkinter.CENTER)
+
+#Filename Entrybox
+filename_box =customtkinter.CTkEntry(master=root,
+                            placeholder_text="Filename",
+                            width=350,
+                            height=20,
+                            border_width=2,
+                            corner_radius=10)
+filename_box.place(relx=0.5, rely=0.1, anchor=tkinter.CENTER)
+
+#Content Textbox
+"""
+content_box =customtkinter.CTkEntry(master=root,
+                            placeholder_text="Content",
+                            width=350,
+                            height=200,
+                            border_width=2,
+                            corner_radius=10)
+content_box.place(relx=0.5, rely=0.335, anchor=tkinter.CENTER)
+"""
+content_box = customtkinter.CTkTextbox(master=root,
+                            width=350,
+                            height=200,
+                            border_width=2,
+                            corner_radius=10)
+content_box.place(relx=0.5, rely=0.335, anchor=tkinter.CENTER)
+
+#Advanced Options FRame
+advanced_options = customtkinter.CTkFrame(master=root,
+                            width=350,
+                            height=100,
+                            border_width=2,
+                            corner_radius=10)
+advanced_options.place(relx=0.5, rely=0.65, anchor=tkinter.CENTER)
+#Filetype Combobox
+filetype_box = customtkinter.CTkComboBox(master=advanced_options,
+                                    width=70,
+                                    height=20,
+                                    values=[".jpg",".png",".svg",".webp"],
+                                    )
+filetype_box.place(relx=0.123, rely=0.2, anchor=tkinter.CENTER)
+filetype_box.set(".jpg")  # set initial value
+
+
+
+root.mainloop()
 
