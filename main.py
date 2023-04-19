@@ -6,10 +6,10 @@ import customtkinter
 # Generates the QR Code and saves it. Gets called when you press on "Generate" 
 def create_qr():
     qr = qrcode.QRCode(
-            version=version_slider.get(),
-            box_size=boxsize_slider.get(),
-            border=border_slider.get(),
-            error_correction= get_error_correction()
+            version=round(version_slider.get()),
+            box_size=round(boxsize_slider.get()),
+            border=round(border_slider.get()),
+            error_correction=get_error_correction()
     )
     qr.add_data(content_box.get("1.0","end-1c"))
 
@@ -33,9 +33,9 @@ def get_error_correction():
 
 # Updates slider values to represent current value. Gets called whenever a slider is moved
 def update_slider_labels(_):
-    version_slider_label.configure(text=f"Version ({int(version_slider.get())})")
-    boxsize_slider_label.configure(text=f"Size ({int(boxsize_slider.get())})")
-    border_slider_label.configure(text=f"Bordersize ({int(border_slider.get())})")
+    version_slider_label.configure(text=f"Version ({round(version_slider.get())})")
+    boxsize_slider_label.configure(text=f"Size ({round(boxsize_slider.get())})")
+    border_slider_label.configure(text=f"Bordersize ({round(border_slider.get())})")
 
 
 
@@ -182,7 +182,7 @@ version_slider.place(relx=0.6, rely=0.47, anchor=tkinter.CENTER)
 version_slider.set(1) # Sets initial value
 
 version_slider_label = customtkinter.CTkLabel(master=advanced_options,
-                                text=f"Version ({int(version_slider.get())})",
+                                text=f"Version ({round(version_slider.get())})",
                                 height=20,
                                 corner_radius=8,
                                 fg_color="transparent")
@@ -197,10 +197,10 @@ boxsize_slider = customtkinter.CTkSlider(master=advanced_options,
                                         number_of_steps=100,
                                         command=update_slider_labels)
 boxsize_slider.place(relx=0.6, rely=0.67, anchor=tkinter.CENTER)
-boxsize_slider.set(11) # Sets initial value. Set to 11 instead of 10 because of floating point errors
+boxsize_slider.set(10) # Sets initial value. Set to 11 instead of 10 because of floating point errors
 
 boxsize_slider_label = customtkinter.CTkLabel(master=advanced_options,
-                                text=f"Size ({int(boxsize_slider.get())})",
+                                text=f"Size ({round(boxsize_slider.get())})",
                                 height=20,
                                 corner_radius=8,
                                 fg_color="transparent",
@@ -211,15 +211,15 @@ boxsize_slider_label.place(relx=0.125, rely=0.67, anchor=tkinter.CENTER)
 border_slider = customtkinter.CTkSlider(master=advanced_options,
                                         width=320,
                                         height=20,
-                                        from_=4,
+                                        from_=0,
                                         to=100,
-                                        number_of_steps=96,
+                                        number_of_steps=101,
                                         command=update_slider_labels)
 border_slider.place(relx=0.6, rely=0.87, anchor=tkinter.CENTER)
 border_slider.set(4) # Sets initial value
 
 border_slider_label = customtkinter.CTkLabel(master=advanced_options,
-                                text=f"Border Size ({int(border_slider.get())})",
+                                text=f"Border Size ({round(border_slider.get())})",
                                 height=20,
                                 corner_radius=8,
                                 fg_color="transparent")
