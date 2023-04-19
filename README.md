@@ -12,6 +12,22 @@ Lightweight application with GUI to quickly export qr codes as png, jpg, webp or
 4. Enter Filename, Content and choose your settings. Then click on "Generate".
 5. The file should be saved to ".../qrcode-generator/QR-Codes".
 
+## Advanced Options
 
-The Terminal version doesnt offer any advanced options and saves files as png.
+**File Extension**: Choose between .png, .jpg, .svg and .webp file extensions for your QR-Code.
+
+**Error Correction**: Changes Error Correction Level. M allows 15% of the code to be unreadable, Q 25% and so on.
+
+**Color**: Changes the Color of the Code itself.
+
+**Background Color**: Changes the Background Color.
+
+**Version**: Determines the version of the QR-Code. Higher versions inceare the complexity of the qrcode allow for more Data to be stored in it.
+
+**Size**: Changes the "line thickness" of the QR-Code.
+
+**Border Size**: Changes distance to the border of the image. The lowest recommended value is 4.
+
+## Terminal Version
+The Terminal version doesnt offer any advanced options and saves files as png. When asked to generate another one, enter "n" to quit or anything else to keep going.
 
