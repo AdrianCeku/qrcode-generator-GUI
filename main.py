@@ -18,6 +18,7 @@ def create_qr():
 
     img.save(f"QR-Codes/{filename_box.get()}{filetype_box.get()}")
 
+
 def get_error_correction():
     if error_corection_box.get()=="L (7%)":
         return qrcode.constants.ERROR_CORRECT_L
@@ -28,6 +29,11 @@ def get_error_correction():
     elif error_corection_box.get()=="H (30%)":
         return qrcode.constants.ERROR_CORRECT_H
     else: return qrcode.constants.ERROR_CORRECT_M
+
+def update_slider_labels(_):
+    version_slider_label.configure(text=f"Version ({int(version_slider.get())})")
+    boxsize_slider_label.configure(text=f"Size ({int(boxsize_slider.get())})")
+    border_slider_label.configure(text=f"Bordersize ({int(border_slider.get())})")
 
 
 
@@ -101,10 +107,10 @@ advanced_options_label.place(relx=0.22, rely=0.55, anchor=tkinter.CENTER)
 filetype_box = customtkinter.CTkComboBox(master=advanced_options,
                                     width=70,
                                     height=20,
-                                    values=[".jpg",".png",".svg",".webp"],
+                                    values=[".png",".jpg",".svg",".webp"],
                                     )
 filetype_box.place(relx=0.2, rely=0.2, anchor=tkinter.CENTER)
-filetype_box.set(".jpg")  # set initial value
+filetype_box.set(".png")  # set initial value
 
 # Errorcorrection Combobox
 error_corection_box = customtkinter.CTkComboBox(master=advanced_options,
@@ -139,9 +145,17 @@ version_slider = customtkinter.CTkSlider(master=advanced_options,
                                         height=20,
                                         from_=1,
                                         to=40,
-                                        number_of_steps=40)
+                                        number_of_steps=40,
+                                        command=update_slider_labels)
 version_slider.place(relx=0.6, rely=0.4, anchor=tkinter.CENTER)
 version_slider.set(1)
+
+version_slider_label = customtkinter.CTkLabel(master=advanced_options,
+                                text=f"Version ({int(version_slider.get())})",
+                                height=20,
+                                corner_radius=8,
+                                fg_color="transparent")
+version_slider_label.place(relx=0.125, rely=0.4, anchor=tkinter.CENTER)
 
 # Boxsize Slider
 boxsize_slider = customtkinter.CTkSlider(master=advanced_options,
@@ -149,9 +163,18 @@ boxsize_slider = customtkinter.CTkSlider(master=advanced_options,
                                         height=20,
                                         from_=1,
                                         to=100,
-                                        number_of_steps=100)
+                                        number_of_steps=100,
+                                        command=update_slider_labels)
 boxsize_slider.place(relx=0.6, rely=0.6, anchor=tkinter.CENTER)
-boxsize_slider.set(10)
+boxsize_slider.set(11)
+
+boxsize_slider_label = customtkinter.CTkLabel(master=advanced_options,
+                                text=f"Size ({int(boxsize_slider.get())})",
+                                height=20,
+                                corner_radius=8,
+                                fg_color="transparent",
+                                )
+boxsize_slider_label.place(relx=0.125, rely=0.6, anchor=tkinter.CENTER)
 
 # Border Slider
 border_slider = customtkinter.CTkSlider(master=advanced_options,
@@ -159,9 +182,17 @@ border_slider = customtkinter.CTkSlider(master=advanced_options,
                                         height=20,
                                         from_=4,
                                         to=100,
-                                        number_of_steps=96)
+                                        number_of_steps=96,
+                                        command=update_slider_labels)
 border_slider.place(relx=0.6, rely=0.8, anchor=tkinter.CENTER)
 border_slider.set(4)
+
+border_slider_label = customtkinter.CTkLabel(master=advanced_options,
+                                text=f"Border Size ({int(border_slider.get())})",
+                                height=20,
+                                corner_radius=8,
+                                fg_color="transparent")
+border_slider_label.place(relx=0.125, rely=0.8, anchor=tkinter.CENTER)
 
 
 

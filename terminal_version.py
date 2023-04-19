@@ -18,7 +18,7 @@ def startup(t):
     time.sleep(t) 
     print("")
     time.sleep(t)
-    print("by Sifro ")
+    print("by Adrian Ceku ")
     print("\n \n \n")
 startup(0.1)
 
@@ -32,8 +32,10 @@ while Running:
     filename = input("Filename: ")
     content = input("Content: ")
     img = qrcode.make(content)
-    img.save(f"{filename}.jpg")
-    print(f"File saved as {filename}.jpg in current directory")
+    img.save(f"QR-Codes/{filename}.png")
+    print(f"File saved as {filename}.png in /a/QR-Codes/")
     exit = input("Generate another file? (y/n): ")
     if exit == "n":
+        print("Bye")
+        time.sleep(0.1)
         Running = False
