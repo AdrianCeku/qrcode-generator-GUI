@@ -33,7 +33,7 @@ while Running:
     content = input("Content: ")
     img = qrcode.make(content)
     img.save(f"QR-Codes/{filename}.png")
-    print(f"File saved as {filename}.png in /a/QR-Codes/")
+    print(f"File saved as {filename}.png in .../qrcode-generator/QR-Codes/")
     exit = input("Generate another file? (y/n): ")
     if exit == "n":
         print("Bye")

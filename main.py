@@ -132,7 +132,7 @@ error_corection_box.place(relx=0.4, rely=0.27, anchor=tkinter.CENTER)
 error_corection_box.set("M (15%)")  # Sets initial value
 
 filetype_box_label = customtkinter.CTkLabel(master=advanced_options,
-                                text="Error Crrection",
+                                text="Error Correction",
                                 height=20,
                                 corner_radius=8,
                                 fg_color="transparent")
