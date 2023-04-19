@@ -6,7 +6,7 @@ Lightweight application with GUI to quickly export qr codes as png, jpg, webp or
 ## How to use:
 
 0. Install Python.
-1. Clone or download repository.
+1. Clone or download the repository.
 2. Use "pip install -r requirements.txt" to install the needed libraries (qrcode and customtkinter)
 3. Use "python main.py" for the GUI or "python terminal_version.py" for the terminal version.
 4. Enter Filename, Content and choose your settings. Then click on "Generate".
