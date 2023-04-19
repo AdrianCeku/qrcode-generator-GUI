@@ -27,7 +27,7 @@ Lightweight application with a GUI to quickly export qr codes as png, jpg, webp 
 
 **Size**: Changes the "line thickness" of the QR-Code.
 
-**Border Size**: Changes distance to the border of the image. The lowest recommended value is 4.
+**Border Size**: Changes distance from the edge of the code to the border of the image. The lowest recommended value is 4.
 
 ## Terminal Version
 The Terminal version doesnt offer any advanced options and saves files as png. When asked to generate another one, enter "n" to quit or anything else to keep going.
