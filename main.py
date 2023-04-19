@@ -197,7 +197,7 @@ boxsize_slider = customtkinter.CTkSlider(master=advanced_options,
                                         number_of_steps=100,
                                         command=update_slider_labels)
 boxsize_slider.place(relx=0.6, rely=0.67, anchor=tkinter.CENTER)
-boxsize_slider.set(10) # Sets initial value. Set to 11 instead of 10 because of floating point errors
+boxsize_slider.set(10) # Sets initial value
 
 boxsize_slider_label = customtkinter.CTkLabel(master=advanced_options,
                                 text=f"Size ({round(boxsize_slider.get())})",
