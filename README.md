@@ -1,16 +1,17 @@
 # qrcode-generator
-Lightweight application with GUI to quickly export qr codes as png, jpg, webp or svg files. 
+Lightweight application with a GUI to quickly export qr codes as png, jpg, webp or svg files. 
 
-![Screenshot](https://user-images.githubusercontent.com/95617181/233194390-ed0b81a4-1837-450a-abeb-3ed9998cb891.png)
+![Screenshot](https://user-images.githubusercontent.com/95617181/233199277-afeafbd2-3843-42be-9ac9-bc3fab1cdb59.png)
 
 ## How to use:
 
 0. Install Python.
 1. Clone or download the repository.
-2. Use "pip install -r requirements.txt" to install the needed libraries (qrcode and customtkinter)
-3. Use "python main.py" for the GUI or "python terminal_version.py" for the terminal version.
-4. Enter Filename, Content and choose your settings. Then click on "Generate".
-5. The file should be saved to ".../qrcode-generator/QR-Codes".
+2. Open the folder, click inside of the "path bar" right next to the search bar, type "cmd" and press enter to open the terminal in your current directory.
+3. Use "pip install -r requirements.txt" to install the needed libraries (qrcode and customtkinter)
+4. Use "python main.py" for the GUI or "python terminal_version.py" for the terminal version.
+5. Enter Filename, Content and choose your settings. Then click on "Generate".
+6. The file should be saved to ".../qrcode-generator/QR-Codes/name.extension".
 
 ## Advanced Options
 
@@ -22,7 +23,7 @@ Lightweight application with GUI to quickly export qr codes as png, jpg, webp or
 
 **Background Color**: Changes the Background Color.
 
-**Version**: Determines the version of the QR-Code. Higher versions inceare the complexity of the qrcode allow for more Data to be stored in it.
+**Version**: Determines the version of the QR-Code. Higher versions increase the complexity of the QR-Code and allow for more Data to be stored in it.
 
 **Size**: Changes the "line thickness" of the QR-Code.
 
