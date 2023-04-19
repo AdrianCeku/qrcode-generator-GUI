@@ -46,6 +46,7 @@ root = customtkinter.CTk()
 root.geometry("600x600")
 root.title("QR Code Generator by Adrian Ceku")
 root.resizable(False,False)
+root.iconbitmap("icon.ico")
 
 # Generate Button
 generate_button = customtkinter.CTkButton(master=root,
