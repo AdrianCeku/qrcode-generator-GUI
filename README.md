@@ -23,7 +23,7 @@ Lightweight application with a GUI to quickly export qr codes as png, jpg, webp 
 
 **Background Color**: Changes the Background Color.
 
-**Version**: Determines the version of the QR-Code. Higher versions increase the complexity of the QR-COde and allow for more Data to be stored in it.
+**Version**: Determines the version of the QR-Code. Higher versions increase the complexity of the QR-Code and allow for more Data to be stored in it.
 
 **Size**: Changes the "line thickness" of the QR-Code.
 
