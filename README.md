@@ -11,7 +11,7 @@ Lightweight application with a user friendly GUI to quickly export QR-Codes as p
 2. Open the repository folder, click inside of the "path bar" right next to the search bar, type "cmd" and press enter to open the terminal in your current directory.
 3. Enter "pip install -r requirements.txt" to install the needed libraries (qrcode and customtkinter) or use "pip install qrcode" and "pip install customtkinter" to install them manually. 
 4. Enter "python main.py" for the GUI or "python terminal_version.py" for the terminal version.
-5. Enter Filename, Content and choose your settings. Then click on "Generate".
+5. Enter Filename, Content and choose your settings. Then click on "Save".
 6. The file should be saved to ".../qrcode-generator/QR-Codes/name.extension".
 
 ## Advanced Options
