@@ -2,7 +2,6 @@ import qrcode
 import qrcode.image.svg
 import tkinter
 import customtkinter 
-from PIL import Image
 
 Version = "1.1"
 
@@ -247,13 +246,13 @@ boxsize_slider_label = customtkinter.CTkLabel(master=advanced_options,
 boxsize_slider_label.place(relx=0.125, rely=0.87, anchor=tkinter.CENTER)
 
 # Generate Button
-safe_button = customtkinter.CTkButton(master=settings_frame,
+save_button = customtkinter.CTkButton(master=settings_frame,
                                     width=120,
                                     height=32,
                                     corner_radius=8,
-                                    text="Safe Code",
+                                    text="Save",
                                     command=create_and_safe_qr)
-safe_button.place(relx=0.5, rely=0.9, anchor=tkinter.CENTER)
+save_button.place(relx=0.5, rely=0.9, anchor=tkinter.CENTER)
 
 # Preview Frame
 preview_frame = customtkinter.CTkFrame(master=root,
