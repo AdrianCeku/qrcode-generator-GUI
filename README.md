@@ -1,8 +1,9 @@
 # qrcode-generator-GUI
 Lightweight application with a user friendly GUI to quickly export QR-Codes as png, jpg, webp or svg files. 
-![Screenshot-2](https://user-images.githubusercontent.com/95617181/233758516-21f24697-ffdd-42b9-b0a5-2c56af6be3f4.png)
+![Screenshot](https://user-images.githubusercontent.com/95617181/233758744-13a2674e-111c-4674-a443-4f377b559fc5.png)
 
 ## How to use:
+
 
 0. Install Python.
 1. Clone or download the repository.
