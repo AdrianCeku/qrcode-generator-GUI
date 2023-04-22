@@ -26,9 +26,9 @@ Lightweight application with a user friendly GUI to quickly export QR-Codes as p
 
 **Version**: Determines the version of the QR-Code. Higher versions increase the complexity of the QR-Code and allow for more data to be stored in it.
 
-**Size**: Changes the "line/block thickness" of the QR-Code. Your image resolution will be <number_of_blocks(determined by version) * size>. 
-
 **Border Size**: Changes distance from the edge of the code to the border of the image. The lowest recommended value is 4.
+
+**Size**: Changes the "line/block thickness" of the QR-Code. Your image resolution will be <number_of_blocks(determined by version) * size> pixels. 
 
 **Enable Preview**: Extends the window to the right and shows a live preview of your code. Using high versions whith preview enabled may lead to lag.
 
