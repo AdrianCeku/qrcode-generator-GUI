@@ -3,6 +3,8 @@ import qrcode.image.svg
 import tkinter
 import customtkinter 
 
+Version = "1.0"
+
 # Generates the QR Code and saves it. Gets called when you press on "Generate" 
 def create_qr():
     qr = qrcode.QRCode(
@@ -44,7 +46,7 @@ customtkinter.set_appearance_mode("Dark")
 customtkinter.set_default_color_theme("dark-blue")
 root = customtkinter.CTk()
 root.geometry("600x600")
-root.title("QR Code Generator by Adrian Ceku")
+root.title(f"QR Code Generator (Version {Version})")
 root.resizable(False,False)
 root.iconbitmap("icon.ico")
 
