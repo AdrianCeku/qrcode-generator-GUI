@@ -1,7 +1,6 @@
 # qrcode-generator-GUI
 Lightweight application with a user friendly GUI to quickly export QR-Codes as png, jpg, webp or svg files. 
-
-![Screenshot](https://user-images.githubusercontent.com/95617181/233199277-afeafbd2-3843-42be-9ac9-bc3fab1cdb59.png)
+![Screenshot-2](https://user-images.githubusercontent.com/95617181/233758516-21f24697-ffdd-42b9-b0a5-2c56af6be3f4.png)
 
 ## How to use:
 
@@ -28,6 +27,8 @@ Lightweight application with a user friendly GUI to quickly export QR-Codes as p
 **Size**: Changes the "line thickness" of the QR-Code.
 
 **Border Size**: Changes distance from the edge of the code to the border of the image. The lowest recommended value is 4.
+
+**Enable Preview**: Extends the Window to the right and show a live preview of your code. Using high versions whith Preview enabled may lead to lag.
 
 ## Terminal Version
 The Terminal version doesnt offer any advanced options and saves files as png. Default settings in the terminal version are the same as the default settings in the GUI Version. 
