@@ -20,13 +20,13 @@ Lightweight application with a user friendly GUI to quickly export QR-Codes as p
 
 **Error Correction**: Changes Error Correction Level. M allows up to 15% of the QR-Code to be unreadable but still work. Q allows for 25% and so on.
 
-**Color**: Changes the Color of the Code itself.
+**Color**: Changes the color of the QR-Code itself.
 
-**Background Color**: Changes the Background Color.
+**Background Color**: Changes the background color.
 
-**Version**: Determines the version of the QR-Code. Higher versions increase the complexity of the QR-Code and allow for more Data to be stored in it.
+**Version**: Determines the version of the QR-Code. Higher versions increase the complexity of the QR-Code and allow for more data to be stored in it.
 
-**Size**: Changes the "line thickness" of the QR-Code.
+**Size**: Changes the "line/block thickness" of the QR-Code. Your image resolution will be <number_of_blocks(determined by version) * size>. 
 
 **Border Size**: Changes distance from the edge of the code to the border of the image. The lowest recommended value is 4.
 
