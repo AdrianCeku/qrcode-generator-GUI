@@ -2,9 +2,9 @@ import qrcode
 import qrcode.image.svg
 import tkinter
 import customtkinter 
+from PIL import Image
 
-Version = "1.1"
-
+Version = "1.2"
 
 # Generates the QR Code and saves it. Gets called when you press on "Generate" 
 def create_qr(mode=""):
@@ -17,13 +17,29 @@ def create_qr(mode=""):
     qr.add_data(content_box.get("1.0","end-1c")) # Gets content from row 1 idex 0 up to the end but deletes the last character (-1c) because using "end" always adds a linebreak at the end
 
     if mode == "temp": # If mode == "temp", save image to temp folder for use in the preview window
-        img = qr.make_image(back_color=background_color_box.get(),fill_color=fill_color_box.get())
-        img = img.resize((400,400))
-        img.save("temp/temp.png")
+        if logo_checkbox.get() == 1: # generates qr code and adds logo if enabled
+            img = qr.make_image(back_color=background_color_box.get(),fill_color=fill_color_box.get()).convert("RGB")
+            img = img.resize((400,400))
+            logo = Image.open("temp/logo.png")
+            logo = logo.resize((100,100))
+            img.paste(logo, (150,150))
+            img.save("temp/temp.png")
+        else: # just generates qr code without adding the logo if disabled
+            img = qr.make_image(back_color=background_color_box.get(),fill_color=fill_color_box.get())
+            img = img.resize((400,400))
+            img.save("temp/temp.png")
+
+    elif logo_checkbox.get() == 1: # checks if logo addition is enabled
+        img = qr.make_image(back_color=background_color_box.get(),fill_color=fill_color_box.get()).convert("RGB")
+        img = img.resize((2000,2000))
+        logo = Image.open("temp/logo.png")
+        img.paste(logo, (750,750))
+        return img
 
     elif filetype_box.get() == ".svg":
         return qr.make_image(image_factory=qrcode.image.svg.SvgImage) # Use svg imagefactory if selected
-    else: return qr.make_image(back_color=background_color_box.get(),fill_color=fill_color_box.get())
+    else: 
+        return qr.make_image(back_color=background_color_box.get(),fill_color=fill_color_box.get())
 
 def create_and_safe_qr():
     img = create_qr()
@@ -41,6 +57,23 @@ def get_error_correction():
         return qrcode.constants.ERROR_CORRECT_H
     else: return qrcode.constants.ERROR_CORRECT_M
 
+def select_logo(): #Gets called when someone presses the "select logo" button
+    logo_path = tkinter.filedialog.askopenfilename(title="Select a logo",
+        initialdir="/",
+        filetypes=(
+            ("Image file", "*.png"),
+            ("Image file", "*.jpg"),
+            ("Image file", "*.webp"),
+            ("All files", "*.*")
+            )
+        )
+
+    logo = Image.open(logo_path)
+    logo = logo.resize((500,500))
+    logo.save("temp/logo.png")
+    update_ui()
+
+
 # Updates ui to represent current values. Gets called whenever a slider or combobox is changed
 def update_ui(_ = ""):
     if preview_checkbox.get() == 1:
@@ -53,6 +86,22 @@ def update_ui(_ = ""):
         root.geometry("600x600")
         settings_frame.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
         preview_frame.place(relx=2, anchor=tkinter.CENTER)
+
+    if logo_checkbox.get() == 1:
+        border_slider.configure(state="disabled",button_color="grey")
+        border_slider.set(4)
+        boxsize_slider.configure(state="disabled",button_color="grey")
+        boxsize_slider.set(100)
+        error_corection_box.configure(values=["Q (25%)","H (30%)"])
+        if (error_corection_box.get() != "H (30%)") and (error_corection_box.get() != "Q (25%)") : error_corection_box.set("H (30%)")
+        filetype_box.configure(values=[".png",".jpg",".webp"])
+        if filetype_box.get() == ".svg":
+            filetype_box.set(".png")
+    else:
+        border_slider.configure(state="normal",button_color=["#3a7ebf", "#1f538d"])
+        boxsize_slider.configure(state="normal",button_color=["#3a7ebf", "#1f538d"])
+        error_corection_box.configure(values=["L (7%)","M (15%)","Q (25%)","H (30%)"])
+        filetype_box.configure(values=[".png",".jpg",".svg",".webp"])
 
     version_slider_label.configure(text=f"Version ({round(version_slider.get())})")
     border_slider_label.configure(text=f"Bordersize ({round(border_slider.get())})")
@@ -79,12 +128,13 @@ settings_frame.place(relx=0.25, rely=0.5, anchor=tkinter.CENTER)
 
 # Filename Entrybox + Label
 filename_box =customtkinter.CTkEntry(master=settings_frame,
-                                    #placeholder_text="Filename",
                                     width=450,
                                     height=20,
                                     border_width=2,
                                     corner_radius=10)
 filename_box.place(relx=0.5, rely=0.1, anchor=tkinter.CENTER)
+
+filename_box.insert(0,"qr-code")
 
 filename_box_label = customtkinter.CTkLabel(master=settings_frame,
                                     text="Filename",
@@ -101,6 +151,8 @@ content_box = customtkinter.CTkTextbox(master=settings_frame,
                                     border_width=2,
                                     corner_radius=10)
 content_box.place(relx=0.5, rely=0.335, anchor=tkinter.CENTER)
+
+content_box.bind("<Key>", update_ui)
 
 content_box_label = customtkinter.CTkLabel(master=settings_frame,
                                     text="Content",
@@ -252,7 +304,7 @@ save_button = customtkinter.CTkButton(master=settings_frame,
                                     corner_radius=8,
                                     text="Save",
                                     command=create_and_safe_qr)
-save_button.place(relx=0.5, rely=0.9, anchor=tkinter.CENTER)
+save_button.place(relx=0.77, rely=0.88, anchor=tkinter.CENTER)
 
 # Preview Frame
 preview_frame = customtkinter.CTkFrame(master=root,
@@ -269,7 +321,28 @@ preview_checkbox = customtkinter.CTkCheckBox(master=settings_frame,
                                 text="Enable Preview",
                                 command=update_ui)
 
-preview_checkbox.place(relx=0.22, rely=0.90, anchor=tkinter.CENTER)
+preview_checkbox.place(relx=0.22, rely=0.88, anchor=tkinter.CENTER)
+
+# Logo Checkbox
+logo_checkbox = customtkinter.CTkCheckBox(master=settings_frame,
+                                width=100,
+                                height=20,
+                                text="Enable Logo",
+                                command=update_ui)
+
+logo_checkbox.place(relx=0.45, rely=0.88, anchor=tkinter.CENTER)
+
+# Logo Select Button
+
+logo_select_button = customtkinter.CTkButton(master=settings_frame,
+                                width=120,
+                                height=20,
+                                fg_color="#888888",
+                                hover_color="#666666",
+                                text="Change Logo",
+                                command=select_logo)
+
+logo_select_button.place(relx=0.46, rely=0.925, anchor=tkinter.CENTER)
 
 # Preview Image
 create_qr("temp")
