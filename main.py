@@ -18,11 +18,12 @@ def create_qr(mode=""):
 
     if mode == "temp": # If mode == "temp", save image to temp folder for use in the preview window
         if logo_checkbox.get() == 1: # generates qr code and adds logo if enabled
-            img = qr.make_image(back_color=background_color_box.get(),fill_color=fill_color_box.get()).convert("RGB")
+            if filetype_box.get() == ".jpg": img = qr.make_image(back_color=background_color_box.get(),fill_color=fill_color_box.get()).convert("RGB") # Converts to RGB without transparency as .jpg doenst support it
+            else: img = qr.make_image(back_color=background_color_box.get(),fill_color=fill_color_box.get()).convert("RGBA")
             img = img.resize((400,400))
-            logo = Image.open("temp/logo.png")
+            logo = Image.open("temp/logo.png").convert("RGBA")
             logo = logo.resize((100,100))
-            img.paste(logo, (150,150))
+            img.paste(logo, (150,150),logo)
             img.save("temp/temp.png")
         else: # just generates qr code without adding the logo if disabled
             img = qr.make_image(back_color=background_color_box.get(),fill_color=fill_color_box.get())
@@ -30,10 +31,11 @@ def create_qr(mode=""):
             img.save("temp/temp.png")
 
     elif logo_checkbox.get() == 1: # checks if logo addition is enabled
-        img = qr.make_image(back_color=background_color_box.get(),fill_color=fill_color_box.get()).convert("RGB")
+        if filetype_box.get() == ".jpg": img = qr.make_image(back_color=background_color_box.get(),fill_color=fill_color_box.get()).convert("RGB") # Converts to RGB without transparency as .jpg doenst support it
+        else: img = qr.make_image(back_color=background_color_box.get(),fill_color=fill_color_box.get()).convert("RGBA")
         img = img.resize((2000,2000))
-        logo = Image.open("temp/logo.png")
-        img.paste(logo, (750,750))
+        logo = Image.open("temp/logo.png").convert("RGBA")
+        img.paste(logo, (750,750),logo)
         return img
 
     elif filetype_box.get() == ".svg":
@@ -94,14 +96,24 @@ def update_ui(_ = ""):
         boxsize_slider.set(100)
         error_corection_box.configure(values=["Q (25%)","H (30%)"])
         if (error_corection_box.get() != "H (30%)") and (error_corection_box.get() != "Q (25%)") : error_corection_box.set("H (30%)")
-        filetype_box.configure(values=[".png",".jpg",".webp"])
         if filetype_box.get() == ".svg":
             filetype_box.set(".png")
     else:
         border_slider.configure(state="normal",button_color=["#3a7ebf", "#1f538d"])
         boxsize_slider.configure(state="normal",button_color=["#3a7ebf", "#1f538d"])
         error_corection_box.configure(values=["L (7%)","M (15%)","Q (25%)","H (30%)"])
-        filetype_box.configure(values=[".png",".jpg",".svg",".webp"])
+
+    if background_color_box.get() == "transparent":
+        if filetype_box.get() == ".jpg": filetype_box.set(".png")
+        if logo_checkbox.get() == 1:
+            filetype_box.configure(values=[".png",".webp"])
+        else:
+            filetype_box.configure(values=[".png",".svg",".webp"])
+    else:
+        if logo_checkbox.get() == 1:
+            filetype_box.configure(values=[".png",".jpg",".webp"])
+        else:
+            filetype_box.configure(values=[".png",".jpg",".svg",".webp"])
 
     version_slider_label.configure(text=f"Version ({round(version_slider.get())})")
     border_slider_label.configure(text=f"Bordersize ({round(border_slider.get())})")
@@ -230,7 +242,7 @@ filetype_box_label.place(relx=0.6, rely=0.12, anchor=tkinter.CENTER)
 background_color_box = customtkinter.CTkComboBox(master=advanced_options,
                                     width=70,
                                     height=20,
-                                    values=["black","white","red","green", "blue", "yellow", "orange", "pink", "purple"],
+                                    values=["transparent","black","white","red","green", "blue", "yellow", "orange", "pink", "purple"],
                                     command=update_ui)
 background_color_box.place(relx=0.8, rely=0.27, anchor=tkinter.CENTER)
 background_color_box.set("white")  # Sets initial value
