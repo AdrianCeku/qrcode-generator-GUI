@@ -1,3 +1,4 @@
+import os
 import qrcode
 import qrcode.image.svg
 import tkinter
@@ -75,6 +76,8 @@ def select_logo(): #Gets called when someone presses the "select logo" button
     logo.save("temp/logo.png")
     update_ui()
 
+def open_folder():
+    os.startfile("QR-Codes")
 
 # Updates ui to represent current values. Gets called whenever a slider or combobox is changed
 def update_ui(_ = ""):
@@ -310,15 +313,6 @@ boxsize_slider_label = customtkinter.CTkLabel(master=advanced_options,
                                     fg_color="transparent")
 boxsize_slider_label.place(relx=0.125, rely=0.87, anchor=tkinter.CENTER)
 
-# Generate Button
-save_button = customtkinter.CTkButton(master=settings_frame,
-                                    width=120,
-                                    height=32,
-                                    corner_radius=8,
-                                    text="Save",
-                                    command=create_and_safe_qr)
-save_button.place(relx=0.77, rely=0.88, anchor=tkinter.CENTER)
-
 # Preview Frame
 preview_frame = customtkinter.CTkFrame(master=root,
                                 width=600,
@@ -374,6 +368,26 @@ logosize_slider_label = customtkinter.CTkLabel(master=settings_frame,
                                     corner_radius=8,
                                     fg_color="transparent")
 logosize_slider_label.place(relx=0.065, rely=0.92, anchor=tkinter.CENTER)
+
+# Save Button
+save_button = customtkinter.CTkButton(master=settings_frame,
+                                    width=120,
+                                    height=32,
+                                    corner_radius=8,
+                                    text="Save",
+                                    command=create_and_safe_qr)
+save_button.place(relx=0.77, rely=0.88, anchor=tkinter.CENTER)
+
+
+# Open Folder Button
+open_folder_button = customtkinter.CTkButton(master=settings_frame,
+                                    width=110,
+                                    height=20,
+                                    fg_color="#888888",
+                                    hover_color="#666666",
+                                    text="Open Folder",
+                                    command=open_folder)
+open_folder_button.place(relx=0.77, rely=0.94, anchor=tkinter.CENTER)
 
 # Preview Image
 create_qr("temp")
