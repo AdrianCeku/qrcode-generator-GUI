@@ -34,7 +34,13 @@ Lightweight application with a user friendly GUI to quickly export QR-Codes as p
 
 **Enable Logo**: Adds a chosen logo to the center of the QR-Code. This option disables .svg export and some other sliders. Saving a QR-Code with a logo, will always be 2000x2000px image.
 
+**Logosize**: Changes the logosize. Depending on your used Version and Error Correction, values above 5 might make the QR-Code unreadable. Its best to test this beforehand by trying to scan the QR-Code.
+
 **Change Logo**: Opens up the file explorer to select a logo. Only supports .png, .jpg and .webp files.
+
+**Save**: Generates and saves the QR-Code.
+
+**Open folder**: Opens the file explorer in the folder where the QR-Codes are saved.
 
 ## Terminal Version
 The Terminal version doesnt offer any advanced options and saves files as png. Default settings in the terminal version are the same as the default settings in the GUI Version. 
