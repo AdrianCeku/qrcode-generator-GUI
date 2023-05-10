@@ -1,7 +1,7 @@
 # qrcode-generator-GUI
 Lightweight application with a user friendly GUI to quickly export QR-Codes as png, jpg, webp or svg files. 
 
-![Screenshot](https://github.com/AdrianCeku/qrcode-generator-GUI/assets/95617181/b9fbed0f-958c-4be8-a306-02ac94213fe3)
+![Screenshot](https://github.com/AdrianCeku/qrcode-generator-GUI/assets/95617181/87bb06c6-ebc9-4baf-867c-8b98c2e1a28d)
 
 ## How to use:
 
