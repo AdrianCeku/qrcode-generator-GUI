@@ -18,21 +18,21 @@ Lightweight application with a user friendly GUI to quickly export QR-Codes as p
 
 **File Extension**: Choose between .png, .jpg, .svg and .webp file extensions for your QR-Code.
 
-**Error Correction**: Changes Error Correction Level. M allows up to 15% of the QR-Code to be unreadable but still work. Q allows for 25% and so on. If you
+**Error Correction**: Changes Error Correction Level. M allows up to 15% of the QR-Code to be unreadable but still work. Q allows for 25% and so on. If you enable the logo, you will be locked to using Q (25%) or H (30%). 
 
 **Color**: Changes the color of the QR-Code itself.
 
-**Background Color**: Changes the background color.
+**Background Color**: Changes the background color. Choosing transparent removes the option to export as .jpg since it doesnt support transparency.
 
 **Version**: Determines the version of the QR-Code. Higher versions increase the complexity of the QR-Code and allow for more data to be stored in it.
 
 **Border Size**: Changes distance from the edge of the code to the border of the image. The lowest recommended value is 4.
 
-**Size**: Changes the "line/block thickness" of the QR-Code. Your image resolution will be <number_of_blocks(determined by version) * size> pixels. 
+**Size**: Changes the "line/block thickness" of the QR-Code. Your image resolution will be <number_of_blocks(determined by version and content) * size> pixels. 
 
-**Enable Preview**: Extends the window to the right and shows a live preview of your code. Using high versions whith preview enabled may lead to lag.
+**Enable Preview**: Extends the window to the right and shows a live preview of your QR-Code. Using high versions whith preview enabled may lead to lag.
 
-**Enable Logo**: Adds a chosen logo to the center of the qr-code. This option locks some other options.
+**Enable Logo**: Adds a chosen logo to the center of the QR-Code. This option disables .svg export and some other sliders. Saving a QR-Code with a logo, will always be 2000x2000px image.
 
 **Change Logo**: Opens up the file explorer to select a logo. Only supports .png, .jpg and .webp files.
 
