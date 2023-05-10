@@ -4,7 +4,7 @@ import tkinter
 import customtkinter 
 from PIL import Image
 
-Version = "1.2"
+Version = "1.2.2"
 
 # Generates the QR Code and saves it. Gets called when you press on "Generate" 
 def create_qr(mode=""):
@@ -22,8 +22,8 @@ def create_qr(mode=""):
             else: img = qr.make_image(back_color=background_color_box.get(),fill_color=fill_color_box.get()).convert("RGBA")
             img = img.resize((400,400))
             logo = Image.open("temp/logo.png").convert("RGBA")
-            logo = logo.resize((100,100))
-            img.paste(logo, (150,150),logo)
+            logo = logo.resize((x:=20 * round(logosize_slider.get()),y:= 20 * round(logosize_slider.get())))
+            img.paste(logo, (200 - int(x/2),200 - int(y/2)),logo)
             img.save("temp/temp.png")
         else: # just generates qr code without adding the logo if disabled
             img = qr.make_image(back_color=background_color_box.get(),fill_color=fill_color_box.get())
@@ -35,7 +35,8 @@ def create_qr(mode=""):
         else: img = qr.make_image(back_color=background_color_box.get(),fill_color=fill_color_box.get()).convert("RGBA")
         img = img.resize((2000,2000))
         logo = Image.open("temp/logo.png").convert("RGBA")
-        img.paste(logo, (750,750),logo)
+        logo = logo.resize((x:=100 * round(logosize_slider.get()),y:= 100 * round(logosize_slider.get())))
+        img.paste(logo, (1000 - int(x/2),1000 - int(y/2)),logo)
         return img
 
     elif filetype_box.get() == ".svg":
@@ -71,7 +72,6 @@ def select_logo(): #Gets called when someone presses the "select logo" button
         )
 
     logo = Image.open(logo_path)
-    logo = logo.resize((500,500))
     logo.save("temp/logo.png")
     update_ui()
 
@@ -118,6 +118,7 @@ def update_ui(_ = ""):
     version_slider_label.configure(text=f"Version ({round(version_slider.get())})")
     border_slider_label.configure(text=f"Bordersize ({round(border_slider.get())})")
     boxsize_slider_label.configure(text=f"Size ({round(boxsize_slider.get())})")
+    logosize_slider_label.configure(text=f"Logosize ({round(logosize_slider.get())})")
 
 # customtkinter setup
 customtkinter.set_appearance_mode("Dark")
@@ -333,7 +334,7 @@ preview_checkbox = customtkinter.CTkCheckBox(master=settings_frame,
                                 text="Enable Preview",
                                 command=update_ui)
 
-preview_checkbox.place(relx=0.22, rely=0.88, anchor=tkinter.CENTER)
+preview_checkbox.place(relx=0.45, rely=0.87, anchor=tkinter.CENTER)
 
 # Logo Checkbox
 logo_checkbox = customtkinter.CTkCheckBox(master=settings_frame,
@@ -342,19 +343,37 @@ logo_checkbox = customtkinter.CTkCheckBox(master=settings_frame,
                                 text="Enable Logo",
                                 command=update_ui)
 
-logo_checkbox.place(relx=0.45, rely=0.88, anchor=tkinter.CENTER)
+logo_checkbox.place(relx=0.22, rely=0.87, anchor=tkinter.CENTER)
 
 # Logo Select Button
 
 logo_select_button = customtkinter.CTkButton(master=settings_frame,
-                                width=120,
+                                width=110,
                                 height=20,
                                 fg_color="#888888",
                                 hover_color="#666666",
                                 text="Change Logo",
                                 command=select_logo)
 
-logo_select_button.place(relx=0.46, rely=0.925, anchor=tkinter.CENTER)
+logo_select_button.place(relx=0.225, rely=0.965, anchor=tkinter.CENTER)
+
+# Logosize Slider + Label
+logosize_slider = customtkinter.CTkSlider(master=settings_frame,
+                                    width=120,
+                                    height=20,
+                                    from_=1,
+                                    to=10,
+                                    number_of_steps=10,
+                                    command=update_ui)
+logosize_slider.place(relx=0.23, rely=0.92, anchor=tkinter.CENTER)
+logosize_slider.set(5) # Sets initial value
+
+logosize_slider_label = customtkinter.CTkLabel(master=settings_frame,
+                                    text=f"Logosize ({round(logosize_slider.get())})",
+                                    height=20,
+                                    corner_radius=8,
+                                    fg_color="transparent")
+logosize_slider_label.place(relx=0.065, rely=0.92, anchor=tkinter.CENTER)
 
 # Preview Image
 create_qr("temp")
