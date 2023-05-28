@@ -5,13 +5,13 @@ import tkinter
 import customtkinter 
 from PIL import Image
 
-Version = "1.2.2"
+Version = "1.2.3"
 
 # Generates the QR Code and saves it. Gets called when you press on "Generate" 
 def create_qr(mode=""):
     qr = qrcode.QRCode(
             version=round(version_slider.get()),    # Gets values of sliders and error correction
-            box_size=round(boxsize_slider.get()),
+            box_size=round(get_boxsize()),
             border=round(border_slider.get()),
             error_correction=get_error_correction()
     )
@@ -49,6 +49,12 @@ def create_and_safe_qr():
     img = create_qr()
     img.save(f"QR-Codes/{filename_box.get()}{filetype_box.get()}") # Saves with chosen name and file extension
 
+def get_boxsize():
+    if logo_checkbox == 1:
+        return 100
+    else:
+        return boxsize_slider.get()
+
 # Returns selected Error Correction Level. Gets called when Generating a QR Code
 def get_error_correction():
     if error_corection_box.get()=="L (7%)":
@@ -81,6 +87,15 @@ def open_folder():
 
 # Updates ui to represent current values. Gets called whenever a slider or combobox is changed
 def update_ui(_ = ""):
+    if logo_checkbox.get() == 1:
+        logo_select_button.place(relx=0.225, rely=0.965, anchor=tkinter.CENTER)
+        logosize_slider.place(relx=0.23, rely=0.92, anchor=tkinter.CENTER)
+        logosize_slider_label.place(relx=0.065, rely=0.92, anchor=tkinter.CENTER)
+    else:
+        logo_select_button.place(relx=2, rely=0.965, anchor=tkinter.CENTER)
+        logosize_slider.place(relx=2, rely=0.92, anchor=tkinter.CENTER)
+        logosize_slider_label.place(relx=2, rely=0.92, anchor=tkinter.CENTER)       
+
     if preview_checkbox.get() == 1:
         root.geometry("1200x600")
         settings_frame.place(relx=0.25, rely=0.5, anchor=tkinter.CENTER)
@@ -96,7 +111,6 @@ def update_ui(_ = ""):
         border_slider.configure(state="disabled",button_color="grey")
         border_slider.set(4)
         boxsize_slider.configure(state="disabled",button_color="grey")
-        boxsize_slider.set(100)
         error_corection_box.configure(values=["Q (25%)","H (30%)"])
         if (error_corection_box.get() != "H (30%)") and (error_corection_box.get() != "Q (25%)") : error_corection_box.set("H (30%)")
         if filetype_box.get() == ".svg":
