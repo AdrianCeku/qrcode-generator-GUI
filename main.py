@@ -102,7 +102,7 @@ def update_ui(_ = ""):
         preview_frame.place(relx=0.75, rely=0.5, anchor=tkinter.CENTER)
         create_qr("temp")
         preview_image.configure(image= tkinter.PhotoImage(file="temp/temp.png"))
-    else:
+    elif root.geometry != "600x600":
         root.geometry("600x600")
         settings_frame.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
         preview_frame.place(relx=2, anchor=tkinter.CENTER)
