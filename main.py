@@ -213,6 +213,7 @@ filetype_box = customtkinter.CTkComboBox(master=advanced_options,
                                     width=70,
                                     height=20,
                                     values=[".png",".jpg",".svg",".webp"],
+                                    state="readonly",
                                     command=update_ui)
 filetype_box.place(relx=0.2, rely=0.27, anchor=tkinter.CENTER)
 filetype_box.set(".png")  # Sets initial value
@@ -229,6 +230,7 @@ error_corection_box = customtkinter.CTkComboBox(master=advanced_options,
                                     width=70,
                                     height=20,
                                     values=["L (7%)","M (15%)","Q (25%)","H (30%)"],
+                                    state="readonly",
                                     command=update_ui)
 error_corection_box.place(relx=0.4, rely=0.27, anchor=tkinter.CENTER)
 error_corection_box.set("M (15%)")  # Sets initial value
@@ -245,6 +247,7 @@ fill_color_box = customtkinter.CTkComboBox(master=advanced_options,
                                     width=70,
                                     height=20,
                                     values=["black","white","red","green", "blue", "yellow", "orange", "pink", "purple"],
+                                    state="readonly",
                                     command=update_ui)
 fill_color_box.place(relx=0.6, rely=0.27, anchor=tkinter.CENTER)
 fill_color_box.set("black")  # Sets initial value
@@ -261,6 +264,7 @@ background_color_box = customtkinter.CTkComboBox(master=advanced_options,
                                     width=70,
                                     height=20,
                                     values=["transparent","black","white","red","green", "blue", "yellow", "orange", "pink", "purple"],
+                                    state="readonly",
                                     command=update_ui)
 background_color_box.place(relx=0.8, rely=0.27, anchor=tkinter.CENTER)
 background_color_box.set("white")  # Sets initial value
